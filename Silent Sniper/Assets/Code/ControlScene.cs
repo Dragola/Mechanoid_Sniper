@@ -11,7 +11,7 @@ public class ControlScene : MonoBehaviour
 	}
 	public void Survival()
 	{
-		SceneManager.LoadScene ("Survival");
+		SceneManager.LoadScene ("Endless Mode #1");
 	}
 	public void Training()
 	{

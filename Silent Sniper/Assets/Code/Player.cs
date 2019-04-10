@@ -178,7 +178,7 @@ public class Player : MonoBehaviour
 		//loads survival
 		if (Input.GetKeyDown (KeyCode.P) && current.name == "Training") 
 		{
-			SceneManager.LoadScene ("Survival");
+			SceneManager.LoadScene ("Endless Mode #1");
 		}
 	}
 }
