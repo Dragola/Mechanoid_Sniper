@@ -75,29 +75,23 @@
     <Compile Include="Assets\Code\Target\TargetO.cs" />
     <Compile Include="Assets\Code\Titan.cs" />
     <Compile Include="Assets\Code\World.cs" />
-    <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>A:/GitHub/Silent_Sniper/Silent Sniper/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>A:/GitHub/Silent_Sniper/Silent Sniper/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>A:/GitHub/Silent_Sniper/Silent Sniper/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>A:/GitHub/Silent_Sniper/Silent Sniper/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>A:/GitHub/Silent_Sniper/Silent Sniper/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>A:/GitHub/Silent_Sniper/Silent Sniper/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Editor">
       <HintPath>A:/GitHub/Silent_Sniper/Silent Sniper/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.TextMeshPro.Editor">
+      <HintPath>A:/GitHub/Silent_Sniper/Silent Sniper/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.PackageManagerUI.Editor">
+      <HintPath>A:/GitHub/Silent_Sniper/Silent Sniper/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>A:/GitHub/Silent_Sniper/Silent Sniper/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.CollabProxy.Editor">
+      <HintPath>A:/GitHub/Silent_Sniper/Silent Sniper/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="com.unity.multiplayer-weaver.Editor">
       <HintPath>A:/GitHub/Silent_Sniper/Silent Sniper/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
@@ -110,6 +104,12 @@
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>A:/GitHub/Silent_Sniper/Silent Sniper/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>A:/GitHub/Silent_Sniper/Silent Sniper/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.DataPrivacy">
+      <HintPath>A:/GitHub/Silent_Sniper/Silent Sniper/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.XR.LegacyInputHelpers">
       <HintPath>A:/GitHub/Silent_Sniper/Silent Sniper/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
