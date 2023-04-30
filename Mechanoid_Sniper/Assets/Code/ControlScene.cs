@@ -7,22 +7,22 @@ public class ControlScene : MonoBehaviour
 	//loads different scenes (for buttons)
 	public void Return()
 	{
-		SceneManager.LoadScene ("Main Menu");
+		SceneManager.LoadScene("Main Menu");
 	}
 	public void Survival()
 	{
-		SceneManager.LoadScene ("Endless Mode #1");
+		SceneManager.LoadScene("Endless Mode #1");
 	}
 	public void Training()
 	{
-		SceneManager.LoadScene ("Training");
+		SceneManager.LoadScene("Training");
 	}
 	public void Exit()
 	{
-		Application.Quit ();
+		Application.Quit();
 	}
 	public void Try()
 	{
-		SceneManager.LoadScene ("Survival");
+		Survival();
 	}
 }

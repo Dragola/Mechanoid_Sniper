@@ -42,6 +42,7 @@ public class Titan : MonoBehaviour
 	Text warning;
 	Text thealth;
 	int direction;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -63,6 +64,7 @@ public class Titan : MonoBehaviour
 		thealth = GameObject.Find ("Thealth").GetComponent<Text> ();
 		warning.gameObject.SetActive (false);
 	}
+
 	// Update is called once per frame8
 	void Update () 
 	{
@@ -72,8 +74,10 @@ public class Titan : MonoBehaviour
 
 		//set's values
 		sensitivity = ScriptP.sensitivity;
+		
 		//finds distance
 		Distance = Vector3.Distance (Body.transform.position, transform.position);
+		
 		//player's position
 		PPosition = Body.GetComponent<Transform>().position;
 
@@ -82,6 +86,7 @@ public class Titan : MonoBehaviour
 		{
 			warning.gameObject.SetActive (true);
 		}
+
 		//titan ready
 		if (titanfall <= 0 && fallen == false) 
 		{
@@ -112,6 +117,7 @@ public class Titan : MonoBehaviour
 
 			}
 		}
+
 		//AI mode
 		if (engage == true && grounded == true && Activate == false) 
 		{
@@ -139,14 +145,18 @@ public class Titan : MonoBehaviour
 				ammo -= 1;
 			}
 		}
+
 		//while inside the titan
 		if (Activate == true) 
-		{ 
-			//rotates the camera on the Y-axis
-			transform.Rotate (0, mouseX * sensitivity * Time.deltaTime, 0);
+		{
+			if (mouseX != 0)
+			{
+				//rotates the camera on the Y-axis
+				transform.Rotate(0, mouseX + sensitivity * Time.deltaTime, 0);
+			}
 
 			//sets the arm and camera's angles and hides/shows UI
-			if (set == false) 
+			if (set == false)
 			{
 				if (setAI == false) 
 				{
@@ -158,10 +168,14 @@ public class Titan : MonoBehaviour
 				set = true;
 			}
 			//vertical movement for arms and camera
-			ArmL.transform.Rotate (mouseY * sensitivity * Time.deltaTime, 0, 0);
-			ArmR.transform.Rotate (mouseY * sensitivity * Time.deltaTime, 0, 0);
-			TitanEye.transform.Rotate (mouseY * sensitivity * Time.deltaTime, 0, 0);	
+			if (mouseY != 0)
+			{
+				ArmL.transform.Rotate(mouseY + sensitivity * Time.deltaTime, 0, 0);
+				ArmR.transform.Rotate(mouseY + sensitivity * Time.deltaTime, 0, 0);
+				TitanEye.transform.Rotate(mouseY + sensitivity * Time.deltaTime, 0, 0);
+			}
 		}
+
 		//drops titan
 		if (Input.GetKeyDown (KeyCode.V) && fallen == false && titanfall <= 0) 
 		{
@@ -189,31 +203,32 @@ public class Titan : MonoBehaviour
 			player.transform.position = titanExit.position;
 			Activate = false;
 		}
+
 		//player's inside
 		if (Activate == true) 
 		{
 			thealth.text = "Health :" + health.ToString ();
 			//moves forward
-			if (Input.GetKey (KeyCode.W) && Activate == true) 
+			if (Input.GetKey(KeyCode.W) && Activate == true) 
 			{
 				//translates/moves titan forward
 				transform.Translate (0, 0, 2 * Time.deltaTime);
 				direction = 0;
 			}
 			//moves back
-			if (Input.GetKey (KeyCode.S) && Activate == true) 
+			if (Input.GetKey(KeyCode.S) && Activate == true) 
 			{
 				transform.Translate (0, 0, -2 * Time.deltaTime);
 				direction = 1;
 			}
 			//moves left
-			if (Input.GetKey (KeyCode.A) && Activate == true) 
+			if (Input.GetKey(KeyCode.A) && Activate == true) 
 			{
 				transform.Translate (-2 * Time.deltaTime, 0, 0);
 				direction = 2;
 			}
 			//moves right
-			if (Input.GetKey (KeyCode.D) && Activate == true) 
+			if (Input.GetKey(KeyCode.D) && Activate == true) 
 			{
 				transform.Translate (2 * Time.deltaTime, 0, 0);
 				direction = 3;
@@ -228,17 +243,17 @@ public class Titan : MonoBehaviour
 				}
 			}
 			//zoomes in
-			if (Input.GetMouseButtonDown (1)) 
+			if (Input.GetMouseButtonDown(1)) 
 			{
 				TitanEye.fieldOfView = 60;
 			}
 			//zoomes out
-			else if (Input.GetMouseButtonUp (1))
+			else if (Input.GetMouseButtonUp(1))
 			{
 				TitanEye.fieldOfView = 90;
 			}
 			//boost
-			if (Input.GetKeyDown (KeyCode.Space) && boost == false) 
+			if (Input.GetKeyDown(KeyCode.Space) && boost == false) 
 			{
 				boost = true;
 				if (direction == 0) 
@@ -272,6 +287,11 @@ public class Titan : MonoBehaviour
 			GetComponent<Rigidbody> ().useGravity = true;
 			position = false;
 		}
+
+		if (Input.GetKeyDown(KeyCode.Keypad9))
+		{
+			titanfall = 0;
+		}
 	}
 	void FixedUpdate()
 	{
@@ -279,6 +299,7 @@ public class Titan : MonoBehaviour
 		{
 			float eject = 5;
 			eject -= 1f * Time.deltaTime;
+			
 			if (eject <= 0 && player.activeInHierarchy == false) 
 			{
 				ScriptP.health = 0;
@@ -293,6 +314,7 @@ public class Titan : MonoBehaviour
 				engage = false;
 			}
 		}
+
 		//boost recharge
 		if (boost == true) 
 		{
@@ -306,6 +328,7 @@ public class Titan : MonoBehaviour
 				boost = false;
 			}
 		}
+
 		//reload
 		if (ammo <= 0)
 		{
@@ -316,6 +339,7 @@ public class Titan : MonoBehaviour
 				ammo = 60;
 			}
 		}
+
 		//countdown timer (titanfall)
 		if (titanfall >= 0 && grounded == false) 
 		{

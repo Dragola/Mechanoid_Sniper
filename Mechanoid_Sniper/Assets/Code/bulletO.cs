@@ -26,20 +26,20 @@ public class bulletO : MonoBehaviour
 	{
 		if (wait <= 0) 
 		{
-			Destroy (this.gameObject);
+			Destroy (gameObject);
 		} 
 	}
 	//when bullet hits an object
 	void OnTriggerEnter (Collider other)
 	{
-		if (this.name == "BulletE(Clone)") 
+		if (name == "BulletE(Clone)") 
 		{
 			if (other.tag == "Player") 
 			{
 				Player player = GameObject.Find ("Player").GetComponent<Player> ();
 				player.health -= 1;
 				player.regenT = 5;
-				Destroy (this.gameObject);
+				Destroy (gameObject);
 			} 
 			else if (other.tag == "Enemy") 
 			{
@@ -48,15 +48,15 @@ public class bulletO : MonoBehaviour
 				{
 					scriptT.titanfall -= 10;
 				}
-				Destroy (this.gameObject);
+				Destroy (gameObject);
 			} 
 		}
-		else if (this.name == "BulletS(Clone)") 
+		else if (name == "BulletS(Clone)") 
 		{
 			if (other.tag == "Titan") 
 			{
 				scriptT.health -= 1;
-				Destroy (this.gameObject);
+				Destroy (gameObject);
 			} 
 		}
 	}
