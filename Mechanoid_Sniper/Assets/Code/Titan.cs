@@ -288,6 +288,7 @@ public class Titan : MonoBehaviour
 			position = false;
 		}
 
+		//set titanfall timer to 0 (immediate titan)
 		if (Input.GetKeyDown(KeyCode.Keypad9))
 		{
 			titanfall = 0;
