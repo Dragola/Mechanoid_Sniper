@@ -13,7 +13,7 @@ public class World : MonoBehaviour
 	int numberS = 5;
 	int numberSS = 2;
 	float countdown = 10;
-	public int count;
+	int count = 0;
 	bool waveN = false;
 	Transform[] spawn; 
 	string SceneCurrent;
@@ -28,76 +28,66 @@ public class World : MonoBehaviour
 		Scene current = SceneManager.GetActiveScene ();
 		SceneCurrent = current.name;
 
-		//spawns targets
-		if (SceneCurrent == "Training") 
-		{
-			spawn [0] = GameObject.Find ("Spawn1").GetComponent<Transform> ();
-			spawn [1] = GameObject.Find ("Spawn2").GetComponent<Transform> ();
-			spawn [2] = GameObject.Find ("Spawn3").GetComponent<Transform> ();
-			spawn [3] = GameObject.Find ("Spawn4").GetComponent<Transform> ();
+        spawn[0] = GameObject.Find("Spawn1").GetComponent<Transform>();
+        spawn[1] = GameObject.Find("Spawn2").GetComponent<Transform>();
+        spawn[2] = GameObject.Find("Spawn3").GetComponent<Transform>();
+        spawn[3] = GameObject.Find("Spawn4").GetComponent<Transform>();
 
+        //spawns targets
+        if (SceneCurrent == "Training") 
+		{
 			Instantiate (Target, spawn [0].position, spawn [0].rotation); 
 			Instantiate (Target, spawn [1].position, spawn [1].rotation); 
 			Instantiate (Target, spawn [2].position, spawn [2].rotation); 
 			Instantiate (Target, spawn [3].position, spawn [3].rotation); 
-		} 
-		//references spawns
-		else if (SceneCurrent == "Survival") 
-		{
-			spawn [0] = GameObject.Find ("Spawn1").GetComponent<Transform> ();
-			spawn [1] = GameObject.Find ("Spawn2").GetComponent<Transform> ();
-			spawn [2] = GameObject.Find ("Spawn3").GetComponent<Transform> ();
-			spawn [3] = GameObject.Find ("Spawn4").GetComponent<Transform> ();
 		}
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		if (SceneCurrent == "Survival") 
+        if (SceneCurrent == "Endless Mode #1") 
 		{
 			//spawn super soldier
 			if (wave >= 5 && spawnSS > 1) 
 			{
-				int rdm = new int ();
-				rdm = (int)Random.Range (0, 4);
-				if (rdm == 0) 
+                int rdm = Random.Range(0, 4);
+                if (rdm == 0) 
 				{
-					Instantiate (soldier, spawn [0].position, spawn [0].rotation); 
+					Instantiate(soldier, spawn [0].position, spawn [0].rotation); 
 				} 
 				else if (rdm == 1) 
 				{
-					Instantiate (soldier, spawn [1].position, spawn [1].rotation); 
+					Instantiate(soldier, spawn [1].position, spawn [1].rotation); 
 				}
 				else if (rdm == 2) 
 				{
-					Instantiate (soldier, spawn [2].position, spawn [2].rotation); 
+					Instantiate(soldier, spawn [2].position, spawn [2].rotation); 
 				} 
 				else if (rdm == 3) 
 				{
-					Instantiate (soldier, spawn [3].position, spawn [3].rotation); 
+					Instantiate(soldier, spawn [3].position, spawn [3].rotation); 
 				}
 				spawnSS -= 1;
 			}
 			//soldier spawning
 			if (wave >= 0 && spawnS > 0) 
 			{
-				int rdm = new int ();
-				rdm = (int)Random.Range (0, 4);
-				if (rdm == 0) {
-					Instantiate (soldier, spawn [0].position, spawn [0].rotation); 
+                int rdm = Random.Range(0, 4);
+                if (rdm == 0) {
+					Instantiate(soldier, spawn [0].position, spawn [0].rotation); 
 				} 
 				else if (rdm == 1) 
 				{
-					Instantiate (soldier, spawn [1].position, spawn [1].rotation); 
+					Instantiate(soldier, spawn [1].position, spawn [1].rotation); 
 				} 
 				else if (rdm == 2) 
 				{
-					Instantiate (soldier, spawn [2].position, spawn [2].rotation); 
+					Instantiate(soldier, spawn [2].position, spawn [2].rotation); 
 				} 
 				else if (rdm == 3) 
 				{
-					Instantiate (soldier, spawn [3].position, spawn [3].rotation); 
+					Instantiate(soldier, spawn [3].position, spawn [3].rotation); 
 				}
 				spawnS -= 1;
 			}
@@ -112,13 +102,14 @@ public class World : MonoBehaviour
 	void FixedUpdate()
 	{
 		//enemy count
-		count = GameObject.FindGameObjectsWithTag ("Enemy").Length;
+		count = GameObject.FindGameObjectsWithTag("Enemy").Length;
 
 		//wave refresh
 		if (waveN == true && count == 0) 
 		{
-			countdown -= 1 * Time.deltaTime; 
-			waveT.text = "Wave: Starting in " + countdown.ToString ();
+            countdown -= 1 * Time.deltaTime; 
+			waveT.text = "Wave: Starting in " + countdown.ToString();
+			
 			//sets wave
 			if (countdown <= 0 && wave >= 1) 
 			{
@@ -126,7 +117,7 @@ public class World : MonoBehaviour
 				spawnS += numberS;
 				numberS += 5;
 				countdown = 10;
-				waveT.text = "Wave: " + wave.ToString ();
+				waveT.text = "Wave: " + wave.ToString();
 
 				//super soldier add
 				if (wave >= 5) 
