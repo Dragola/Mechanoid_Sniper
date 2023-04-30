@@ -22,13 +22,13 @@ public class Bullet : MonoBehaviour
 	void Start ()
 	{
 		//references script
-		ScriptG = GameObject.Find ("Ksvk").GetComponent<Gun> ();
+		ScriptG = GameObject.Find("Ksvk").GetComponent<Gun> ();
 
 		//gets component
-		bullet = GetComponent<Rigidbody> ();
+		bullet = GetComponent<Rigidbody>();
 
 		//adds a force of 1000 forward (z-axis)
-		bullet.AddForce (transform.forward * 1000);
+		bullet.AddForce(transform.forward * 1000);
 	}
 	void Update()
 	{
@@ -44,22 +44,22 @@ public class Bullet : MonoBehaviour
 		life -= Time.deltaTime;
 
 		//ray (origin, destination)
-		Ray rayPos = new Ray (transform.position, transform.forward);
+		Ray rayPos = new Ray(transform.position, transform.forward);
 
 		//collects info on object hit
 		RaycastHit detect;
 
 		//raycast
-		if (Physics.Raycast (rayPos, out detect, 100)) 
+		if (Physics.Raycast(rayPos, out detect, 100)) 
 		{
 			//stores distance
 			BullDistance = detect.distance;
 
 			//if bullet is going to hit enemies head
-			if (BullDistance >= 25 && RandomS == false && detect.collider.tag == "Head") 
+			if (BullDistance >= 25 && RandomS == false && (detect.collider.CompareTag("Head") || detect.collider.CompareTag("Center")))
 			{
 				//randomizes a number between 0 and 1
-				CameraSelect = (int)Random.Range (0, 3);
+				CameraSelect = Random.Range(0, 3);
 				ScriptG.kill = true;
 
 				//slows time (code)
@@ -67,27 +67,27 @@ public class Bullet : MonoBehaviour
 
 				//camera view -front view
 				if (CameraSelect == 0) {
-					ForwardView ();
+					ForwardView();
 				}
 				//camera view -back view
 				else if (CameraSelect == 1) 
 				{
-					BackView ();
+					BackView();
 				} 
 				//camera view -rotation view
 				else if (CameraSelect == 2) 
 				{
-					RotateView ();
+					RotateView();
 				}
 				RandomS = true;
 			}
 			//when the bullet is close the the enemies head
-			else if (BullDistance < 4 && detect.collider.tag == "Head") 
-			{
-				//runs slowMo
-				if (RandomK == false) 
+			else if (BullDistance < 4 && (detect.collider.CompareTag("Head") || detect.collider.CompareTag("Center")))
+            {
+                //runs slowMo
+                if (RandomK == false) 
 				{
-					SlowMo ();
+					SlowMo();
 				}
 				RandomK = true;
 				ScriptG.kill = true;
@@ -101,23 +101,24 @@ public class Bullet : MonoBehaviour
 		Time.timeScale = 1;
 
 		//enemy
-		if (col.gameObject.tag == "Enemy" || col.gameObject.tag == "Head") {
+		if (col.gameObject.CompareTag("Enemy") || col.gameObject.CompareTag("Head")) {
 			//set's hit (from other script) to true and destroys bullet
 			ScriptG.kill = false;
-			col.gameObject.GetComponent<Enemy> ().health -= 1;
-			Destroy (this.gameObject);
+			col.gameObject.GetComponent<Enemy>().health -= 1;
+
+			Destroy (gameObject);
 		} 
 		//target
-		else if (col.gameObject.tag == "Target") 
+		else if (col.gameObject.CompareTag("Target")) 
 		{
-			Destroy (this.gameObject);
+			Destroy(gameObject);
 		}
 		//if bullet hits anything else
 		else 
 		{
 			ScriptG.kill = false;
 			//destroys bullet
-			Destroy (this.gameObject);
+			Destroy(gameObject);
 		}
 	}
 	//sets bool and adds force (slower)
@@ -136,7 +137,7 @@ public class Bullet : MonoBehaviour
 			bullet.velocity = Vector3.zero;
 
 			//adds a force of 110 forward (z-axis)
-			bullet.AddForce (transform.forward * 110);
+			bullet.AddForce(transform.forward * 110);
 
 			Slowmo = true;
 		}

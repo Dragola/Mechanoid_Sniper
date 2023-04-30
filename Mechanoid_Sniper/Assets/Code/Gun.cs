@@ -30,6 +30,7 @@ public class Gun : MonoBehaviour
 	public bool reloadA;
 	bool reload;
 	Text clip;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -61,12 +62,16 @@ public class Gun : MonoBehaviour
 		{
 			ScriptT.Activate = true;
 			GameObject.Find ("Titan Camera").GetComponent<Camera>().depth = 5;
-			Interact.gameObject.SetActive (false);
+			Interact.gameObject.SetActive(false);
 			Player.SetActive(false);
 		}
+
 		//get's mouse input and rotates camera around X-axis
 		mouseY = -Input.GetAxis ("Mouse Y");
-		transform.Rotate (mouseY * sensitivity * Time.deltaTime, 0, 0);
+		if (mouseY != 0)
+		{
+			transform.Rotate(mouseY + sensitivity * Time.deltaTime, 0, 0);
+		}
 
 		//Zoom in
 		if (Input.GetMouseButtonDown(1)) 
